@@ -1,15 +1,23 @@
-FROM golang:1.22.4-alpine
+FROM  golang:1.21.3 as builder
 
 WORKDIR /app
 
-COPY go.mod go.sum ./
+COPY go.mod ./
 
-RUN go mod download
+RUN go mod tidy
 
 COPY . .
 
-RUN go build -o /server
+RUN go build -o main .
+
+FROM alpine:latest
+
+RUN apk --no-cache add ca-certificates
+
+WORKDIR /root/
+
+COPY --from=builder /app/main .
 
 EXPOSE 8080
 
-CMD["/server"]
+CMD [ "./main" ]
