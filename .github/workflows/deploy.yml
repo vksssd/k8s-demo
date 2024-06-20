@@ -48,6 +48,8 @@ jobs:
         
         - name: Configure kubectl and Test Setup
           run: |
+            echo "minikube status"
+            minikube status
             echo "kubectl version"
             kubectl version --client
             echo "kubectl info"
