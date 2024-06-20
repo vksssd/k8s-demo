@@ -1,6 +1,6 @@
 FROM  golang:1.21.3 as builder
 
-WORKDIR /app/cmd
+WORKDIR /app
 
 COPY go.mod ./
 
@@ -11,6 +11,7 @@ COPY . .
 RUN echo "checking file in cmd"
 RUN ls
 RUN cd cmd ls
+
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o /cmd/main .
 
