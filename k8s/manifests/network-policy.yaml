@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-traffic
+spec:
+  podSelector:
+    matchLabels:
+      app: golang-app
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: golang-app
+  egress:
+  - to:
+    - podSelector:
+        matchLabels:
+          app: mongodb
