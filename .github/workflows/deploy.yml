@@ -67,9 +67,8 @@ jobs:
     #     #     KUBECONFIG: ${{secrets.KUBECONFIG}}
             
 
-        - name: Deploy to k8s
-        #   env:
-        #      KUBECONFIG: ${{secrets.KUBECONFIG}}
-          run: |
-            ls
-            kubectl apply -f k8s/manifests/deployment.yaml
+        # - name: Deploy to k8s
+        # #   env:
+        # #      KUBECONFIG: ${{secrets.KUBECONFIG}}
+        #   run: |
+        #     kubectl apply -f k8s/manifests/deployment.yaml --validate=false
