@@ -41,11 +41,23 @@ jobs:
         - name: Checkout code
           uses: actions/checkout@v2
 
-        - name: Setup kubectl
-          uses: azure/setup-kubectl@v1
-          with:
-            version: 'latest'
+        # - name: Setup kubectl
+        #   uses: azure/setup-kubectl@v1
+        #   with:
+        #     version: 'latest'
         
+        - name: Set up minikube
+          uses: engineerd/setup-minikube@v1
+          with:
+            minikube-version: latest
+            kubectl-version: latest
+            driver: docker
+            
+        - name: Configure kubectl
+          run: |
+            minikube kubectl -- get pods -n kube-system  # Test kubectl setup
+            minikube kubectl -- apply -f argocd/application.yaml
+
         - name: Apply ArgoCD application
           run: |
             kubectl config view
