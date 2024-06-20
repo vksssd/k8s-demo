@@ -1,6 +1,6 @@
 module github.com/vksssd/k8s-demo
 
-go 1.21.3
+go 1.22.4
 
 require (
 	github.com/gorilla/mux v1.8.1
