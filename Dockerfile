@@ -9,11 +9,10 @@ RUN go mod tidy
 COPY . .
 
 RUN echo "checking file in cmd"
-RUN ls
-RUN cd cmd ls
 
+RUN ls -l
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o /cmd/main .
+RUN CGO_ENABLED=0 GOOS=linux go build -o ./cmd/main ./cmd
 
 FROM alpine:latest
 
