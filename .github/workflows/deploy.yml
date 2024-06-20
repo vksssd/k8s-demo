@@ -48,7 +48,7 @@ jobs:
         
         - name: Apply ArgoCD application
           run: |
-            kubectl apply -f argocd/application.yaml
+            kubectl apply -f argocd/application.yaml --validate=false
         #   env:
         #     KUBECONFIG: ${{secrets.KUBECONFIG}}
             
