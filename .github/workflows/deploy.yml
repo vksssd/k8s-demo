@@ -48,14 +48,18 @@ jobs:
         
         - name: Configure kubectl and Test Setup
           run: |
+            echo "kubectl version"
             kubectl version --client
+            echo "kubectl info"
             kubectl cluster-info
+            echo "get pod -n kube-system"
             kubectl get pods -n kube-system  # Test kubectl setup
     
         - name: Apply ArgoCD Application
           run: |
             kubectl config view
             kubectl config current-context
+            echo "get argocd pod"
             kubectl get pods -n argocd  # Verify ArgoCD pods are running
             kubectl apply -f argocd/application.yaml --validate=false
       
