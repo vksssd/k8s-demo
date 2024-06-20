@@ -71,4 +71,5 @@ jobs:
         #   env:
         #      KUBECONFIG: ${{secrets.KUBECONFIG}}
           run: |
+            ls
             kubectl apply -f k8s/helm/deployment.yaml
