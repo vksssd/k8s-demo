@@ -72,4 +72,4 @@ jobs:
         #      KUBECONFIG: ${{secrets.KUBECONFIG}}
           run: |
             ls
-            kubectl apply -f k8s/helm/deployment.yaml
+            kubectl apply -f k8s/manifests/deployment.yaml
