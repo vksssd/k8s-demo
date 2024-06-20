@@ -8,8 +8,10 @@ RUN go mod tidy
 
 COPY . .
 
+RUN echo "checking file in cmd"
+RUN ls
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o /app/main .
+RUN CGO_ENABLED=0 GOOS=linux go build -o /app/cmd/main .
 
 FROM alpine:latest
 
