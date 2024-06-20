@@ -40,17 +40,22 @@ jobs:
         steps:
         - name: Checkout code
           uses: actions/checkout@v2
+
+        - name: Setup kubectl
+          uses: azure/setup-kubectl@v1
+          with:
+            version: 'latest'
         
-        - name: Configure kubectl
+        - name: Apply ArgoCD application
           run: |
-                kubectl config view
-                kubectl config current-context
-                kubectl get pods -n argocd
-        
-        - name: Deploy to Minikube with ArgoCD
-          run: |
-                kubectl apply -f argocd/application.yaml
-        
+            kubectl config view
+            kubectl config current-context
+            kubectl get pods -n argocd
+            kubectl apply -f argocd/application.yaml --validate=false
+        #   env:
+        #     KUBECONFIG: ${{secrets.KUBECONFIG}}
+            
+
         - name: Deploy to k8s
         #   env:
         #      KUBECONFIG: ${{secrets.KUBECONFIG}}
