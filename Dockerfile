@@ -10,7 +10,7 @@ COPY . .
 
 RUN echo "checking file in cmd"
 RUN ls
-RUN cd /cmd | ls
+RUN cd cmd ls
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o /cmd/main .
 
