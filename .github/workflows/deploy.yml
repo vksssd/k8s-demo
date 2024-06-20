@@ -19,8 +19,11 @@ jobs:
             go-version: 1.21.3
         
         - name: Build
-          run: go build -v ./...
-
+          run: |
+            cd cmd
+            go build -o ../main
+            cd ..
+            
         - name: Build Docker image
           run: docker build -t ${{secrets.DOCKER_USERNAME}}/golang-app:latest .
 

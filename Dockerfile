@@ -1,6 +1,6 @@
 FROM  golang:1.21.3 as builder
 
-WORKDIR /app
+WORKDIR /app/cmd
 
 COPY go.mod ./
 
@@ -16,7 +16,7 @@ RUN apk --no-cache add ca-certificates
 
 WORKDIR /root/
 
-COPY --from=builder /app/main .
+COPY --from=builder /app/cmd/main .
 
 EXPOSE 8080
 
